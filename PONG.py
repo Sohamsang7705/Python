@@ -55,11 +55,11 @@ def main():
             ball.x += ball_speed_x * delta_time
             ball.y += ball_speed_y * delta_time
 
-            # Bounce top/bottom
+            
             if ball.top <= 0 or ball.bottom >= SCREEN_HEIGHT:
                 ball_speed_y *= -1
 
-            # Bounce off paddles
+            
             if paddle_1.colliderect(ball) and ball_speed_x < 0:
                 ball_speed_x *= -1
                 ball.left = paddle_1.right
@@ -67,19 +67,19 @@ def main():
                 ball_speed_x *= -1
                 ball.right = paddle_2.left
 
-            # Check for score (ball out of bounds)
+            
             if ball.left <= 0 or ball.right >= SCREEN_WIDTH:
-                running = False  # End the game
+                running = False 
 
-        # Move paddles
+        
         paddle_1.y += paddle_1_move * delta_time
         paddle_2.y += paddle_2_move * delta_time
 
-        # Clamp paddles inside screen
+        
         paddle_1.y = max(0, min(SCREEN_HEIGHT - paddle_1.height, paddle_1.y))
         paddle_2.y = max(0, min(SCREEN_HEIGHT - paddle_2.height, paddle_2.y))
 
-        # Draw
+        
         screen.fill(COLOR_BLACK)
         pygame.draw.rect(screen, COLOR_WHITE, paddle_1)
         pygame.draw.rect(screen, COLOR_WHITE, paddle_2)
